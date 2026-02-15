@@ -23,7 +23,7 @@
 #
 # Posts daily mini-challenges to keep training engaging and build consistency
 #
-# frontmatter-hash: 120ffcdcb2439b7d270243e0508aa71cfb2ea78a87dbd3bec3913e36ecfb418c
+# frontmatter-hash: 0f4c3d523123bd2a746e2bfc9342c3f8291506211c00ac8e13fc94ff6d1e903d
 
 name: "📅 Daily AI Challenge Generator"
 "on":
@@ -1028,7 +1028,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_SAFE_OUTPUTS_HANDLER_CONFIG: "{\"create_discussion\":{\"category\":\"announcements\",\"expires\":168,\"fallback_to_issue\":true,\"max\":1},\"missing_data\":{},\"missing_tool\":{},\"update_discussion\":{\"max\":1}}"
+          GH_AW_SAFE_OUTPUTS_HANDLER_CONFIG: "{\"create_discussion\":{\"category\":\"announcements\",\"expires\":168,\"fallback_to_issue\":true,\"labels\":[\"daily-challenge\"],\"max\":1},\"missing_data\":{},\"missing_tool\":{},\"update_discussion\":{\"max\":1}}"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |

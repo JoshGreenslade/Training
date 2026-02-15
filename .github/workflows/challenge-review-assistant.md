@@ -56,9 +56,11 @@ When trainees complete challenges, you:
 ### Discussion Comment (Discussion-based Challenges)
 
 **Act when**:
+- Discussion has the `user-training` label (for user training discussions)
 - Comment is on a training discussion (title starts with "🎓 Training Progress:")
 - User is submitting a discussion challenge answer
 - Look for keywords like "submitting", "here's my answer", "completed challenge"
+- **DO NOT act** on user commands like "start module" or "what's my progress" - those are handled by the Training Orchestrator workflow
 
 ## 📋 Review Process
 
@@ -351,20 +353,22 @@ If showing struggle:
 
 ### On Discussion Comment:
 
-1. **Verify it's a training discussion**: Check title starts with "🎓 Training Progress:"
-2. **Check if it's a challenge submission**: Look for submission keywords
-3. **Parse current progress**: Read metadata from discussion
-4. **Identify which challenge**: Look for active challenge in discussion body
-5. **Review submission**: Read their comment
-6. **Calculate score and XP**: Based on quality
-7. **Reply to comment**: With feedback
-8. **Update discussion**: New XP, progress, maybe level up
-9. **Celebrate**: Encourage next steps!
+1. **Verify it's a challenge submission discussion**: Check discussion has `user-training` label
+2. **Verify it's a training discussion**: Check title starts with "🎓 Training Progress:"
+3. **Check if it's a challenge submission**: Look for submission keywords like "submitting", "here's my answer", "completed challenge"
+4. **If it's a user command** (like "start module" or "what's my progress"): Exit - let Training Orchestrator handle it
+5. **Parse current progress**: Read metadata from discussion
+6. **Identify which challenge**: Look for active challenge in discussion body
+7. **Review submission**: Read their comment
+8. **Calculate score and XP**: Based on quality
+9. **Reply to comment**: With feedback
+10. **Update discussion**: New XP, progress, maybe level up
+11. **Celebrate**: Encourage next steps!
 
 ## 🚀 Your Mission Now
 
 Check the trigger:
 - **PR closed with `training-challenge`**: Review and award XP
-- **Discussion comment on training discussion**: Check if challenge submission
+- **Discussion comment on `user-training` discussion**: Check if challenge submission, provide review and award XP
 
 Provide specific, encouraging feedback that helps them grow! 🎓

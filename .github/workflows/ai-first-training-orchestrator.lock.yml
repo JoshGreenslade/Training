@@ -23,10 +23,13 @@
 #
 # Gamified training program to transform senior engineers into AI-first leaders who can guide their teams through the AI revolution
 #
-# frontmatter-hash: 4606b2069fc687c36c6c5c44bf677ffb06f95f867617f395adbebf6936d030c4
+# frontmatter-hash: 8b4180be11783b57a3b5a6154fdef947021a9e81546b27040dd099bea46d2c97
 
 name: "🎓 AI-First Senior Engineer Training Orchestrator"
 "on":
+  discussion_comment:
+    types:
+    - created
   issues:
     types:
     - opened
@@ -46,7 +49,7 @@ name: "🎓 AI-First Senior Engineer Training Orchestrator"
 permissions: {}
 
 concurrency:
-  group: "gh-aw-${{ github.workflow }}-${{ github.event.issue.number }}"
+  group: "gh-aw-${{ github.workflow }}-${{ github.event.issue.number || github.event.discussion.number }}"
 
 run-name: "🎓 AI-First Senior Engineer Training Orchestrator"
 
@@ -204,7 +207,7 @@ jobs:
           mkdir -p /tmp/gh-aw/safeoutputs
           mkdir -p /tmp/gh-aw/mcp-logs/safeoutputs
           cat > /opt/gh-aw/safeoutputs/config.json << 'GH_AW_SAFE_OUTPUTS_CONFIG_EOF'
-          {"close_issue":{"max":1},"create_discussion":{"expires":168,"max":1},"create_pull_request":{},"missing_data":{},"missing_tool":{},"noop":{"max":1},"update_discussion":{"max":1}}
+          {"add_comment":{"max":1},"close_issue":{"max":1},"create_discussion":{"expires":168,"max":1},"create_pull_request":{},"missing_data":{},"missing_tool":{},"noop":{"max":1},"update_discussion":{"max":1}}
           GH_AW_SAFE_OUTPUTS_CONFIG_EOF
           cat > /opt/gh-aw/safeoutputs/tools.json << 'GH_AW_SAFE_OUTPUTS_TOOLS_EOF'
           [
@@ -282,6 +285,27 @@ jobs:
                 "type": "object"
               },
               "name": "close_issue"
+            },
+            {
+              "description": "Add a comment to an existing GitHub issue, pull request, or discussion. Use this to provide feedback, answer questions, or add information to an existing conversation. For creating new items, use create_issue, create_discussion, or create_pull_request instead. CONSTRAINTS: Maximum 1 comment(s) can be added.",
+              "inputSchema": {
+                "additionalProperties": false,
+                "properties": {
+                  "body": {
+                    "description": "The comment text in Markdown format. This is the 'body' field - do not use 'comment_body' or other variations. Provide helpful, relevant information that adds value to the conversation.",
+                    "type": "string"
+                  },
+                  "item_number": {
+                    "description": "The issue, pull request, or discussion number to comment on. This is the numeric ID from the GitHub URL (e.g., 123 in github.com/owner/repo/issues/123). If omitted, the tool will attempt to resolve the target from the current workflow context (triggering issue, PR, or discussion).",
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "body"
+                ],
+                "type": "object"
+              },
+              "name": "add_comment"
             },
             {
               "description": "Create a new GitHub pull request to propose code changes. Use this after making file edits to submit them for review and merging. The PR will be created from the current branch with your committed changes. For code review comments on an existing PR, use create_pull_request_review_comment instead. CONSTRAINTS: Maximum 1 pull request(s) can be created.",
@@ -389,6 +413,20 @@ jobs:
           GH_AW_SAFE_OUTPUTS_TOOLS_EOF
           cat > /opt/gh-aw/safeoutputs/validation.json << 'GH_AW_SAFE_OUTPUTS_VALIDATION_EOF'
           {
+            "add_comment": {
+              "defaultMax": 1,
+              "fields": {
+                "body": {
+                  "required": true,
+                  "type": "string",
+                  "sanitize": true,
+                  "maxLength": 65000
+                },
+                "item_number": {
+                  "issueOrPRNumber": true
+                }
+              }
+            },
             "close_issue": {
               "defaultMax": 1,
               "fields": {
@@ -1180,7 +1218,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_AGENT_OUTPUT: ${{ env.GH_AW_AGENT_OUTPUT }}
-          GH_AW_SAFE_OUTPUTS_HANDLER_CONFIG: "{\"close_issue\":{\"max\":1},\"create_discussion\":{\"category\":\"announcements\",\"expires\":168,\"fallback_to_issue\":true,\"max\":1},\"create_pull_request\":{\"base_branch\":\"${{ github.ref_name }}\",\"max\":1,\"max_patch_size\":1024},\"missing_data\":{},\"missing_tool\":{},\"update_discussion\":{\"max\":1}}"
+          GH_AW_SAFE_OUTPUTS_HANDLER_CONFIG: "{\"add_comment\":{\"max\":1},\"close_issue\":{\"max\":1},\"create_discussion\":{\"category\":\"announcements\",\"expires\":168,\"fallback_to_issue\":true,\"labels\":[\"user-training\"],\"max\":1},\"create_pull_request\":{\"base_branch\":\"${{ github.ref_name }}\",\"max\":1,\"max_patch_size\":1024},\"missing_data\":{},\"missing_tool\":{},\"update_discussion\":{\"max\":1}}"
         with:
           github-token: ${{ secrets.GH_AW_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           script: |

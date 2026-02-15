@@ -9,7 +9,7 @@ tools:
 roles: all
 safe-outputs:
   create-discussion:
-    category: "announcements"
+    category: announcements
     fallback-to-issue: true
   update-discussion:
 ---

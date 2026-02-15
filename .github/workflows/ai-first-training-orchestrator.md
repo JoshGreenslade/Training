@@ -57,7 +57,9 @@ This workflow has LIMITED tools available:
 **When you need to access GitHub data** (discussions, issues, PRs):
 - Use `web-fetch` with GitHub REST API URLs directly
 - For discussions: `https://api.github.com/repos/JoshGreenslade/Training/discussions/{number}`
+  - Replace `{number}` with the actual discussion number (e.g., 42)
 - For searching: `https://api.github.com/search/issues?q=repo:JoshGreenslade/Training+label:user-training+in:title+{search_term}`
+  - Replace `{search_term}` with the actual search text (e.g., replace `{search_term}` with `Module+1.1` - use + for spaces)
 - Parse the JSON response to extract the data you need
 
 ## 🔧 Using Safe Outputs
@@ -415,6 +417,7 @@ Be:
    - Parse current progress from discussion metadata
    - Check if the module discussion exists:
      - Use `web-fetch` with GitHub API to search: `https://api.github.com/search/issues?q=repo:JoshGreenslade/Training+in:title+Module+{X.Y}`
+     - Replace `{X.Y}` with the actual module number (e.g., `1.1`) - the full query becomes: `...in:title+Module+1.1`
      - Parse JSON response to see if a discussion with that module title exists
    - If the module discussion does NOT exist yet:
      - Create it NOW using `create-discussion` with ALL module content in the body (do not create empty and add via comments)

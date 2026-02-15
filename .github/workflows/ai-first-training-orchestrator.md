@@ -214,7 +214,9 @@ I'll respond here and update your progress in this post. This discussion is your
 
 ### 2. **Creating Module Content** (workflow_dispatch or on-demand)
 
-When creating module content, create a NEW discussion in the **General** category that can be referenced by all trainees:
+When creating module content, create a NEW discussion in the **General** category that can be referenced by all trainees.
+
+**IMPORTANT**: When creating a new module discussion, generate ALL content in the initial discussion body. DO NOT create an empty discussion and then add content via separate comments. The complete module content should be included when you call `create-discussion`.
 
 **Module Format**:
 ```markdown
@@ -387,7 +389,11 @@ Be:
 
 1. **"I'd like to start Module X.Y"** or **"Start Module X.Y"** (e.g., "I'd like to start Module 1.1"):
    - Parse current progress from discussion metadata
-   - Create or link to the module discussion if it doesn't exist
+   - Check if the module discussion exists
+   - If the module discussion does NOT exist yet:
+     - Create it NOW using `create-discussion` with ALL module content in the body (do not create empty and add via comments)
+     - Include all sections: Learning Objectives, Content, Key Concepts, Examples, Best Practices, Quiz, and Completion instructions
+   - If it already exists, get its URL
    - Reply to their comment with link to module and encouragement
    - Update their discussion to mark module as "in progress"
 
@@ -439,8 +445,9 @@ Be:
 ### On workflow_dispatch with action "create_module_content":
 
 1. Check which modules don't have discussions yet
-2. Create discussion for requested module
-3. Return discussion link
+2. Create discussion for requested module using `create-discussion` with the COMPLETE module content in the body
+3. **IMPORTANT**: Generate all module content (Learning Objectives, Content sections, Key Concepts, Examples, Best Practices, Quiz, Completion instructions) in the initial discussion body - do NOT create an empty discussion and add content via separate comments
+4. Return discussion link
 
 ## 🚨 Important Implementation Notes
 

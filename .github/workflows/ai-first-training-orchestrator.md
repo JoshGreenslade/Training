@@ -4,6 +4,8 @@ description: Gamified training program to transform senior engineers into AI-fir
 on:
   issues:
     types: [opened]
+  discussion_comment:
+    types: [created]
   workflow_dispatch:
     inputs:
       trainee:
@@ -24,9 +26,11 @@ safe-outputs:
   create-discussion:
     category: announcements
     fallback-to-issue: true
+    labels: [user-training]
   update-discussion:
   create-pull-request:
   close-issue:
+  add-comment:
 ---
 
 # AI-First Senior Engineer Training Orchestrator
@@ -368,9 +372,65 @@ Be:
 1. Check if issue has the `start-training` label
 2. If yes:
    - Extract trainee username from issue
-   - Create their training discussion with initial structure
+   - Create their training discussion with initial structure and the `user-training` label
    - Close the issue with a comment: "✅ Your training discussion has been created! Find it here: [link]"
 3. If no: Ignore (not a training start)
+
+### On Discussion Comment (User Commands):
+
+**ONLY act when**:
+- The discussion has the `user-training` label
+- Comment is on a training discussion (title starts with "🎓 Training Progress:")
+- Comment contains a user command (not a challenge submission)
+
+**User Commands to Handle**:
+
+1. **"I'd like to start Module X.Y"** or **"Start Module X.Y"**:
+   - Parse current progress from discussion metadata
+   - Create or link to the module discussion if it doesn't exist
+   - Reply to their comment with link to module and encouragement
+   - Update their discussion to mark module as "in progress"
+
+2. **"I've completed Module X.Y"** or **"Completed Module X.Y"**:
+   - Parse current progress
+   - Award module XP (as specified in module metadata)
+   - Update discussion: add XP, mark module complete, update progress bar
+   - Check if all modules for current level are complete
+   - If all modules complete, unlock the level challenge
+   - Reply with celebration and next steps
+
+3. **"I'm ready for the Level X Challenge"** or **"Ready for challenge"**:
+   - Parse current progress
+   - Verify all modules for that level are complete
+   - If ready:
+     - Create the challenge PR (for coding/review challenges)
+     - OR post the challenge in their discussion (for discussion challenges)
+     - Reply with challenge details
+   - If not ready:
+     - Reply with which modules still need completion
+
+4. **"I need help with [topic]"**:
+   - Provide helpful guidance
+   - Point to relevant resources
+   - Offer to clarify concepts
+   - Reply with supportive, educational response
+
+5. **"What's my current progress?"** or **"Show progress"**:
+   - Parse current metadata
+   - Reply with formatted progress summary:
+     - Current level and XP
+     - XP progress bar
+     - Completed modules
+     - Next recommended action
+     - Badges earned
+
+**Implementation Steps**:
+1. Check if discussion has `user-training` label (if not, exit - not for this workflow)
+2. Parse the comment to identify which command
+3. Read the discussion body to get current metadata
+4. Execute the appropriate action
+5. Update discussion body with new metadata (if needed)
+6. Reply to the user's comment with response
 
 ### On workflow_dispatch with action "create_module_content":
 
@@ -383,15 +443,17 @@ Be:
 1. **One discussion per trainee** - All progress tracked in this single location
 2. **Parse metadata carefully** - It's structured for easy agent parsing
 3. **Update discussion in-place** - Use `update-discussion`, never add comments for progress updates
-4. **Reply to user comments** - When users interact in their discussion, reply to their specific comment
+4. **Reply to user comments** - When users interact in their discussion, reply to their specific comment using `add-comment`
 5. **Module discussions are shared** - Create once, reference many times
 6. **PRs for hands-on challenges only** - Theory challenges stay in discussions
 7. **Always close the initial issue** - After creating the discussion
+8. **Label-based filtering** - Only respond to discussions with `user-training` label to avoid conflicts with other workflows
 
 ## 🎯 Your Mission Now
 
 Check the trigger:
-- **Issue opened with "start-training"**: Create their training discussion and close the issue
+- **Issue opened with "start-training"**: Create their training discussion with `user-training` label and close the issue
+- **Discussion comment on `user-training` discussion**: Handle user commands and respond appropriately
 - **workflow_dispatch**: Create module content as requested
 
 Make it memorable, make it fun, and make it transformative! 🚀

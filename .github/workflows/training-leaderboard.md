@@ -11,6 +11,7 @@ safe-outputs:
   create-discussion:
     category: announcements
     fallback-to-issue: true
+    labels: [leaderboard]
   update-discussion:
 ---
 

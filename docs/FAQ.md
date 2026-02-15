@@ -55,45 +55,55 @@ Most people complete it in 4-6 weeks.
 
 **A**: The AI Training Master workflow:
 1. Receives your form submission
-2. Creates a personalized training issue for you
+2. Creates a personalized training discussion for you
 3. Sets up your Level 1 curriculum
 4. Initializes your XP tracking
 5. Provides your first learning modules
+6. Closes the initial issue
 (Usually within 5-10 minutes)
 
 ### Q: How do I track my progress?
 
-**A**: Your main training issue (created when you start) is your progress tracker. Comment `/progress` anytime to see:
+**A**: Your training discussion (titled "🎓 Training Progress: @yourname") is your progress tracker. It shows:
 - Current XP and level
 - Completed modules
 - Challenges finished
 - Badges earned
 - Next recommended steps
 
+The discussion is automatically updated as you progress. Reply to it to ask questions or request modules.
+
 ### Q: What if the AI Training Master doesn't respond?
 
 **A**: First, wait 5-10 minutes (workflows can take time). If still no response:
-1. Check that your issue has the `start-training` label
+1. Check that your issue had the `start-training` label
 2. Look in the Actions tab to see if the workflow ran
-3. Check for any error messages
+3. Look for your training discussion in Discussions
 4. If stuck, open a regular issue describing the problem
 
 ### Q: Can I restart or reset my training?
 
 **A**: You can start a new training session by creating a new "Start Training" issue, but you'll lose previous progress. Instead:
-- Use `/progress` to see where you are
-- Jump to any level you feel comfortable with
-- No need to start over!
+- Check your training discussion to see where you are
+- Reply to it with questions
+- Jump to any content you feel ready for
 
 ### Q: How do challenges get reviewed?
 
-**A**: When you submit a challenge:
-1. Comment `/submit-challenge` on your training issue
-2. The Challenge Review Assistant workflow activates
-3. It reviews your submission (PR or description)
-4. Provides detailed feedback within 10-20 minutes
-5. Awards XP based on quality
-6. Suggests improvements
+**A**: Challenges are reviewed when you complete them:
+
+**For PR-based challenges**:
+1. Close the PR when you're done (coding or reviewing)
+2. The Challenge Review Assistant workflow activates automatically
+3. It reviews your submission within 10-20 minutes
+4. Provides detailed feedback as a PR comment
+5. Awards XP and updates your training discussion
+
+**For discussion-based challenges**:
+1. Reply to your training discussion with your answer
+2. The workflow reviews your response
+3. Provides feedback as a reply
+4. Awards XP and updates your progress
 
 ### Q: Do I have to do daily challenges?
 
@@ -159,52 +169,61 @@ They appear on your profile and the leaderboard!
 
 ### Q: Why isn't the leaderboard updating?
 
-**A**: The leaderboard updates weekly (every Monday). For real-time stats, use `/my-stats` in your training issue.
+**A**: The leaderboard updates weekly (every Monday). For real-time stats, check your training discussion for your current XP, level, and progress.
 
 ## Challenge-Specific Questions
 
 ### Q: How do I submit a coding challenge?
 
-**A**: For practical challenges that involve code:
+**A**: For coding challenges where you implement the solution:
 
-1. Create a PR with your solution
-2. Add label `training-challenge` to the PR
-3. Comment `/submit-challenge` in your training issue
-4. Reference the PR number
-5. The Review Assistant will review it
+1. The AI opens a PR with starter code
+2. Checkout the branch locally
+3. Implement your solution
+4. Push your changes to the branch
+5. **Close the PR** when you're ready for review
+6. The Review Assistant automatically reviews and awards XP
 
-**Note**: Training PRs should have the `do-not-merge` label.
+**Note**: Closing the PR signals you're done. Don't worry - training PRs are marked `do-not-merge`.
 
-### Q: How do I submit a design/theory challenge?
+### Q: How do I submit a code review challenge?
 
-**A**: For challenges that don't involve code:
+**A**: For challenges where you review AI-generated code:
 
-1. Write your solution as a comment in your training issue
-2. Use clear formatting (markdown)
-3. Include diagrams if helpful (ASCII art or links)
-4. Comment `/submit-challenge` when ready
-5. The Review Assistant will review it
+1. The AI opens a PR with buggy/suboptimal code
+2. Review the code and leave comments on issues you find
+3. **Close the PR** when you're done reviewing
+4. The Review Assistant evaluates your review and awards XP
+
+### Q: How do I submit a discussion challenge?
+
+**A**: For strategy, theory, or planning challenges:
+
+1. The challenge is posted in your training discussion
+2. Reply to your discussion with your answer
+3. Use clear formatting and structure
+4. The Review Assistant reviews and awards XP via reply
 
 ### Q: Can I resubmit a challenge?
 
-**A**: Yes! If you want to improve:
-1. Make your improvements
-2. Comment `/submit-challenge` again
-3. Reference previous submission
-4. You'll get updated feedback
-5. Earn additional XP for improvements
+**A**: Challenges are typically one-time submissions, but you can always:
+1. Ask questions in your training discussion
+2. Request hints or clarification
+3. Learn from the feedback and apply it to future challenges
+
+Focus on learning from each submission rather than perfecting scores!
 
 ### Q: What makes a "good" submission?
 
 **A**: Quality submissions:
 - ✅ Meet all stated requirements
 - ✅ Handle edge cases
-- ✅ Include clear documentation
+- ✅ Include clear documentation/explanation
 - ✅ Follow best practices
 - ✅ Show understanding of concepts
 - ✅ Are creative when appropriate
 
-Check the rubric in each challenge description!
+Check the evaluation criteria in each challenge description!
 
 ## Community & Help
 
@@ -212,18 +231,18 @@ Check the rubric in each challenge description!
 
 **A**: Multiple ways:
 
-1. **Quick question**: Comment `/help` in your training issue
-2. **Discussion**: Post in Discussions (General category)
-3. **Specific bug**: Open a regular issue
-4. **Peer help**: Ask in other trainees' public discussions
+1. **In your training discussion**: Reply with your question
+2. **Daily Challenges discussion**: Ask there for challenge-specific help
+3. **General Discussions**: Post in the General category for broader questions
+4. **Specific bug**: Open a regular issue
 
 ### Q: How do I help others?
 
 **A**: Ways to help and earn bonus XP:
 
-1. Answer questions in Discussions
-2. Review others' challenge submissions (comment constructively)
-3. Share your solutions in Discussions
+1. Answer questions in the Daily Challenges discussion
+2. Share insights in your training discussion
+3. Help others understand concepts
 4. Create helpful resources or guides
 5. Encourage and motivate fellow trainees
 
@@ -287,7 +306,7 @@ Feel free to explore and learn from them!
 
 ## Troubleshooting
 
-### Issue: Training issue never created
+### Issue: Training discussion never created
 
 **Possible causes**:
 1. Workflow hasn't run yet (wait 5-10 min)
@@ -296,35 +315,34 @@ Feel free to explore and learn from them!
 
 **Solutions**:
 - Check Actions tab for workflow runs
-- Verify issue has `start-training` label
+- Verify issue had `start-training` label
+- Look for your discussion: Search "Training Progress: @yourname"
 - Try submitting form again
 - Open a bug report if persists
 
-### Issue: Command not recognized
-
-**Example**: Commented `/progress` but nothing happened
+### Issue: Progress not updating
 
 **Possible causes**:
-1. Typo in command
-2. Wrong issue (not your training issue)
-3. Workflow hasn't processed yet
+1. Recent change hasn't processed yet
+2. Workflow error
+3. Looking at cached version
 
 **Solutions**:
-- Check spelling: `/progress` not `/progres` or `progress`
-- Make sure you're commenting on YOUR training issue
-- Wait 5-10 minutes for workflow
-- Try again with exact command
+- Wait 5-10 minutes for workflow to process
+- Refresh the discussion page
+- Check Actions tab for workflow status
+- If persists, reply to your discussion asking for status
 
 ### Issue: Challenge not reviewed
 
 **Possible causes**:
-1. Didn't use `/submit-challenge` command
+1. PR not closed (for PR-based challenges)
 2. PR not labeled `training-challenge`
 3. Workflow hasn't run yet
 
 **Solutions**:
-- Comment `/submit-challenge` in your training issue
-- Add `training-challenge` label to PR
+- **Close the PR** (this triggers the review)
+- Verify PR has `training-challenge` label
 - Wait 10-20 minutes
 - Check Actions tab for errors
 
@@ -333,10 +351,10 @@ Feel free to explore and learn from them!
 **Possible causes**:
 1. You're new (leaderboard updates weekly)
 2. Haven't earned XP yet
-3. Privacy settings
+3. Not enough trainees yet for rankings
 
 **Solutions**:
-- Use `/my-stats` for real-time personal stats
+- Check your training discussion for personal stats
 - Wait for Monday's leaderboard update
 - Make sure you've completed at least one module
 
@@ -379,17 +397,25 @@ We welcome feedback!
 
 ---
 
-## Quick Command Reference
+## Quick Reference
 
-```bash
-# In your training issue
-/progress               # View detailed progress
-/my-stats              # Personal statistics
-/complete-module X.X   # Mark module complete
-/submit-challenge      # Submit challenge for review
-/help                  # Get contextual help
+### How to Interact
 
-# In leaderboard discussion
+**In your training discussion**:
+- "I'd like to start Module X.Y" - Request a module
+- "I've completed Module X.Y" - Mark complete
+- "I'm ready for the Level X Challenge" - Request challenge
+- "What's my progress?" - Check status
+- Any question - Get help
+
+**For PR-based challenges**:
+- Checkout branch, implement/review, close PR when done
+
+**For discussion challenges**:
+- Reply to your training discussion with your answer
+
+**In Daily Challenges discussion**:
+- Reply with your solution to today's challenge
 /leaderboard           # View current standings
 /compare @username     # Compare with another trainee
 ```

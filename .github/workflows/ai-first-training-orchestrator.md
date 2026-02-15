@@ -385,13 +385,13 @@ Be:
 
 **User Commands to Handle**:
 
-1. **"I'd like to start Module X.Y"** or **"Start Module X.Y"**:
+1. **"I'd like to start Module X.Y"** or **"Start Module X.Y"** (e.g., "I'd like to start Module 1.1"):
    - Parse current progress from discussion metadata
    - Create or link to the module discussion if it doesn't exist
    - Reply to their comment with link to module and encouragement
    - Update their discussion to mark module as "in progress"
 
-2. **"I've completed Module X.Y"** or **"Completed Module X.Y"**:
+2. **"I've completed Module X.Y"** or **"Completed Module X.Y"** (e.g., "I've completed Module 1.1"):
    - Parse current progress
    - Award module XP (as specified in module metadata)
    - Update discussion: add XP, mark module complete, update progress bar
@@ -399,8 +399,9 @@ Be:
    - If all modules complete, unlock the level challenge
    - Reply with celebration and next steps
 
-3. **"I'm ready for the Level X Challenge"** or **"Ready for challenge"**:
+3. **"I'm ready for the Level X Challenge"** or **"Ready for challenge"** (e.g., "I'm ready for the Level 1 Challenge"):
    - Parse current progress
+   - If level is not specified in command, use the user's current level from metadata
    - Verify all modules for that level are complete
    - If ready:
      - Create the challenge PR (for coding/review challenges)

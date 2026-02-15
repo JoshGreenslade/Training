@@ -9,6 +9,7 @@ on:
 tools:
   web-fetch:
   github:
+    toolsets: [context, repos, issues, pull_requests, discussions]
 roles: all
 safe-outputs:
   add-comment:

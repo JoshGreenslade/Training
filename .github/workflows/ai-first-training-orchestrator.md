@@ -22,6 +22,7 @@ tools:
   web-fetch:
   web-search:
   github:
+    toolsets: [context, repos, issues, pull_requests, discussions]
 roles: all
 safe-outputs:
   create-discussion:

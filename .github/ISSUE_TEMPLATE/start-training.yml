@@ -1,0 +1,103 @@
+name: 🎓 Start AI-First Training
+description: Begin your journey to become an AI-First Senior Engineer
+title: "[TRAINING] Start Training - "
+labels: ["start-training", "training", "level-1"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # 🎓 Welcome to AI-First Senior Engineer Training!
+        
+        This training program will transform you into an AI-first leader who can guide your team through the AI revolution in software engineering.
+        
+        ## What to Expect
+        
+        - **5 Levels** of progressive challenges
+        - **Gamified** learning with XP and badges
+        - **Hands-on** practical challenges
+        - **Interactive** assessments and feedback
+        - **Real-world** scenarios and projects
+        
+        Complete this form to begin your training journey!
+        
+  - type: input
+    id: trainee_username
+    attributes:
+      label: Your GitHub Username
+      description: Enter your GitHub username (without the @)
+      placeholder: "octocat"
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: experience_level
+    attributes:
+      label: Current AI Experience Level
+      description: How familiar are you with AI tools in software engineering?
+      options:
+        - "Beginner - Never used AI tools for coding"
+        - "Novice - Tried GitHub Copilot or similar"
+        - "Intermediate - Regularly use AI coding assistants"
+        - "Advanced - Have built AI-powered workflows"
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: team_size
+    attributes:
+      label: Team Size
+      description: How many developers do you lead?
+      options:
+        - "1-3 developers"
+        - "4-6 developers"
+        - "7-10 developers"
+        - "11+ developers"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: goals
+    attributes:
+      label: Training Goals
+      description: What do you hope to achieve from this training?
+      placeholder: |
+        - Learn to integrate AI into our development workflow
+        - Train my team on AI tools
+        - Improve code review efficiency
+        - Build automated workflows
+    validations:
+      required: true
+      
+  - type: textarea
+    id: challenges
+    attributes:
+      label: Current Challenges
+      description: What challenges are you facing that you hope AI can help solve?
+      placeholder: |
+        - Managing technical debt
+        - PR review bottlenecks
+        - Onboarding junior developers
+    validations:
+      required: false
+      
+  - type: dropdown
+    id: time_commitment
+    attributes:
+      label: Time Commitment
+      description: How much time can you dedicate per week?
+      options:
+        - "2-4 hours per week"
+        - "5-8 hours per week"
+        - "9-12 hours per week"
+        - "13+ hours per week"
+    validations:
+      required: true
+      
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Ready to Begin?
+      description: By checking this box, you commit to actively participating in the training
+      options:
+        - label: I'm ready to transform into an AI-First leader!
+          required: true

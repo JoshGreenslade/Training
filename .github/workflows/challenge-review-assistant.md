@@ -8,7 +8,6 @@ on:
     types: [created]
 tools:
   web-fetch:
-  github-rest-api:
 roles: all
 safe-outputs:
   add-comment:

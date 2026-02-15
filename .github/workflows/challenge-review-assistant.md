@@ -77,16 +77,18 @@ When trainees complete challenges, you:
 
 ### Step 2: Find the User's Training Discussion
 
-**IMPORTANT**: This workflow does NOT have access to GitHub API tools like `github-pull_request_read` or `github-search_issues`. You must use alternative methods.
+**IMPORTANT**: This workflow does NOT have access to GitHub MCP tools like `github-pull_request_read` or `github-search_issues`. You must use alternative methods.
 
 1. **For PRs**: 
    - Extract trainee username from PR author or branch name (format: `training/{username}/...`)
    - Use `web-fetch` to access the GitHub REST API directly:
      - URL: `https://api.github.com/search/issues?q=repo:JoshGreenslade/Training+label:user-training+in:title+Training+Progress+{username}`
+     - Replace `{username}` with the actual trainee username (without @ symbol)
      - This will return discussions with the user-training label matching the trainee
    - Parse the JSON response to get the discussion number
    - Use `web-fetch` again to get discussion details:
      - URL: `https://api.github.com/repos/JoshGreenslade/Training/discussions/{discussion_number}`
+     - Replace `{discussion_number}` with the actual discussion number from the search response
    - **DO NOT** attempt to use `pull_request_read` or any other GitHub MCP tools - they are not available in this workflow
    
 2. **For Discussion comments**:

@@ -44,28 +44,68 @@ Training/
 **File**: `.github/workflows/ai-first-training-orchestrator.md`
 
 **Triggers**:
-- New issues (for training form submissions)
-- Issue comments (for commands like `/progress`, `/help`, etc.)
+- New issues with `start-training` label (for training form submissions)
 - `workflow_dispatch` (manual triggers)
 
 **What it does**:
-- Creates personalized training issues for new trainees
-- Responds to commands in training issues
-- Awards XP and badges
-- Tracks progress
-- Provides guidance and feedback
+- Creates personalized training discussions for new trainees
+- Closes the initial training issue after setup
+- Provides learning module content
+- Can create challenge PRs (coding or review type)
+- Structures progress tracking with metadata blocks
+
+**Key Architecture**:
+- **Single discussion per trainee**: All progress tracked in one place
+- **Metadata block**: Structured data for parsing (trainee, level, XP, badges, completed items)
+- **Three challenge types**:
+  1. Coding challenges: PR with starter code, user implements
+  2. Code review challenges: PR with buggy code, user reviews
+  3. Discussion challenges: Posted in user's discussion
 
 **Customization Points**:
 - **XP values**: Edit the XP amounts in the markdown body
-- **Level thresholds**: Change the XP required for each level
+- **Level thresholds**: Change the XP required for each level (500, 1500, 3000, 5000)
 - **Modules**: Add/remove/modify learning modules
 - **Challenges**: Change challenge requirements
 - **Badges**: Add new achievement badges
+- **Discussion structure**: Modify the template for user discussions
 
 **To modify**:
 1. Edit `.github/workflows/ai-first-training-orchestrator.md`
 2. Run `gh aw compile ai-first-training-orchestrator`
 3. Commit both `.md` and `.lock.yml` files
+
+### Challenge Review Assistant
+
+**File**: `.github/workflows/challenge-review-assistant.md`
+
+**Triggers**:
+- Pull request closed (for PR-based challenges)
+- Discussion comment (for discussion-based challenge submissions)
+
+**What it does**:
+- Reviews completed challenges (code or text-based)
+- Awards XP based on quality
+- Updates trainee's discussion with new progress
+- Handles level-ups and badge awards
+- Provides constructive feedback
+
+**Key Architecture**:
+- **Waits for PR close**: User signals completion by closing the PR
+- **Finds user discussion**: Parses metadata to get current state
+- **Updates in place**: Uses `update-discussion` to replace discussion body
+- **No duplicate triggers**: Only acts on PR close event
+
+**Customization Points**:
+- **Scoring criteria**: Adjust what makes a submission exceptional/good/adequate
+- **XP percentages**: Change the % of max XP awarded
+- **Feedback format**: Modify the review comment template
+- **Level-up ceremony**: Customize the celebration message
+
+**To modify**:
+1. Edit `.github/workflows/challenge-review-assistant.md`
+2. Recompile: `gh aw compile challenge-review-assistant`
+3. Commit changes
 
 ### Daily Challenge Generator
 
@@ -76,9 +116,15 @@ Training/
 - `workflow_dispatch` (manual trigger)
 
 **What it does**:
-- Posts a daily challenge in Discussions
+- Posts challenges to a single dedicated discussion
+- Updates the discussion daily (doesn't create new ones)
 - Rotates through challenge types by day of week
 - Creates engaging, quick challenges (15-30 min)
+
+**Key Architecture**:
+- **Single discussion**: "📅 Daily AI Challenges - Training Hub"
+- **Updates in place**: New challenge added daily, old moved to archive
+- **No issue creation**: Everything stays in the discussion
 
 **Customization Points**:
 - **Challenge types**: Modify the day-of-week themes
@@ -98,10 +144,24 @@ Training/
 **Triggers**:
 - Weekly schedule (fuzzy - automatically distributed)
 - `workflow_dispatch` (manual trigger)
-- Issue comments (for commands like `/my-stats`)
 
 **What it does**:
-- Updates weekly leaderboard in Discussions
+- Reads progress from all trainee discussions
+- Parses metadata blocks to gather stats
+- Updates single leaderboard discussion
+- Shows rankings, speed runners, recent level-ups
+- Calculates community statistics
+
+**Key Architecture**:
+- **Reads from discussions**: Parses metadata from all training discussions
+- **Single leaderboard discussion**: "🏆 AI-First Training Leaderboard"
+- **Updates weekly**: Replaces entire body with new stats
+- **No individual stats**: Users check their own training discussion
+
+**Customization Points**:
+- **Ranking categories**: Add/remove ranking types
+- **Statistics**: Change what community stats are shown
+- **Format**: Modify the leaderboard table layout
 - Responds to stats requests
 - Tracks community metrics
 - Awards special badges

@@ -18,39 +18,56 @@ Welcome! This guide will get you started with the AI-First Senior Engineer Train
 ### 2. Wait for the AI Training Master (1-2 minutes)
 
 The AI Training Master will:
-- ✅ Create your personalized training issue
+- ✅ Create your personalized training discussion
 - ✅ Set up your Level 1 curriculum
-- ✅ Provide your first challenge
+- ✅ Provide your first learning modules
 - ✅ Initialize your XP tracking
+- ✅ Close the initial issue
 
 ### 3. Start Learning! (Rest of your day)
 
-Once your training issue is created:
-1. Read through the welcome message
-2. Start with Module 1.1
-3. Comment `/complete-module 1.1` when done
-4. Progress through the modules
-5. Take the Level 1 Challenge when ready
+Once your training discussion is created:
+1. Find it under **Discussions** → Search for "Training Progress: @yourname"
+2. Read through the welcome message
+3. Reply when you want to start Module 1.1
+4. Mark it complete when done
+5. Progress through the modules
+6. Request your Level 1 Challenge when ready
 
 ## 🎯 First Day Checklist
 
 - [ ] Submit the "Start Training" issue form
+- [ ] Find your training discussion
 - [ ] Read your personalized welcome message
-- [ ] Complete Module 1.1: The AI Revolution (50 XP)
-- [ ] Check out the Discussions forum
+- [ ] Start Module 1.1: The AI Revolution (50 XP)
+- [ ] Check out the Daily Challenges discussion
 - [ ] Try today's Daily Challenge
-- [ ] Comment `/help` if you have questions
+- [ ] Reply to your discussion if you have questions
 
-## 💡 Key Commands
+## 💡 How to Interact
 
-Use these commands in your training issue comments:
+### In Your Training Discussion
 
-```
-/complete-module <id>    # Mark a learning module complete
-/submit-challenge        # Submit your challenge for review
-/progress                # View your detailed progress
-/help                    # Get help and guidance
-```
+Reply to your discussion to:
+- Start a module: "I'd like to start Module 1.1"
+- Complete a module: "I've completed Module 1.1"
+- Request challenge: "I'm ready for the Level 1 Challenge"
+- Ask for help: "I need help with [topic]"
+- Check progress: "What's my current progress?"
+
+### For PR-Based Challenges
+
+**Coding Challenges** (you write the code):
+1. AI opens a PR with starter files
+2. Checkout the branch locally
+3. Implement the solution
+4. Push your changes
+5. Close the PR when complete
+
+**Code Review Challenges** (you review AI's code):
+1. AI opens a PR with buggy code
+2. Review and leave comments
+3. Close the PR when done reviewing
 
 ## 🎮 Understanding the System
 
@@ -86,16 +103,17 @@ Each level has a capstone challenge:
 
 Every day, check for:
 
-1. **Daily Challenge** (in Discussions)
+1. **Daily Challenge** (in Daily Challenges Discussion)
    - Posted each morning
    - 15-30 minute exercises
    - 50-100 XP each
    - Different themes each day
+   - Reply with your solution
 
-2. **Your Training Issue**
-   - Progress updates
-   - Feedback on submissions
-   - New module unlocks
+2. **Your Training Discussion**
+   - Progress updates (automatically updated in place)
+   - Your current level and XP
+   - Next steps and available modules
 
 3. **Leaderboard** (Updated Monday)
    - See your ranking
@@ -106,8 +124,8 @@ Every day, check for:
 
 ### If You're Stuck
 
-1. Comment `/help` in your training issue
-2. Ask in Discussions (General category)
+1. Reply to your training discussion with your question
+2. Ask in the Daily Challenges discussion
 3. Check the [main README](../README.md)
 4. Review example workflows in `.github/workflows/`
 
@@ -120,9 +138,9 @@ Open a regular issue (not using the training template) and describe:
 
 ### If You Want to Help Others
 
-- Browse open training issues
-- Offer guidance in comments
-- Share your solutions in Discussions
+- Help others in the Daily Challenges discussion
+- Share your solutions and insights
+- Offer guidance to newer trainees
 - Earn bonus XP for being helpful! 🤝
 
 ## 🎯 Tips for Success
@@ -131,20 +149,20 @@ Open a regular issue (not using the training template) and describe:
 
 2. **Do Daily Challenges**: They build consistency and reinforce learning.
 
-3. **Engage with Community**: Learning is better together. Ask questions, share insights.
+3. **Engage with Community**: Learning is better together. Ask questions in discussions, share insights.
 
-4. **Submit Early**: Don't wait for perfection on challenges. Submit, get feedback, iterate.
+4. **Submit Early**: Don't wait for perfection on challenges. Close the PR when ready, get feedback, iterate.
 
 5. **Help Others**: Teaching reinforces your own learning and earns bonus XP.
 
-6. **Track Progress**: Use `/progress` regularly to see how far you've come.
+6. **Track Progress**: Check your training discussion regularly to see how far you've come.
 
 7. **Celebrate Wins**: Earned a badge? Leveled up? Share it in Discussions!
 
 ## 🚀 What's Next After This Guide?
 
 1. **Submit your training form** if you haven't already
-2. **Read your welcome issue** when it's created
+2. **Find your training discussion** when it's created
 3. **Complete Module 1.1** to earn your first XP
 4. **Try today's daily challenge** for quick wins
 5. **Return to [README](../README.md)** for complete program details
@@ -153,9 +171,9 @@ Open a regular issue (not using the training template) and describe:
 
 ### First Hour
 - Submit training form
-- Receive welcome issue
-- Complete 1-2 modules
-- Earn ~100 XP
+- Receive your training discussion
+- Start Module 1.1
+- Earn ~50 XP
 
 ### First Day
 - Complete 2-3 modules
@@ -166,7 +184,7 @@ Open a regular issue (not using the training template) and describe:
 - Complete Level 1 (500 XP)
 - Earn your first badge 🌱
 - Start Level 2
-- Build first agentic workflow
+- Complete your first coding challenge
 
 ### First Month
 - Reach Level 3 or 4
@@ -182,4 +200,4 @@ That's all you need to get started. The AI Training Master will guide you throug
 
 ---
 
-Questions? Comment `/help` in your training issue or ask in Discussions!
+Questions? Reply to your training discussion or ask in the Daily Challenges discussion!

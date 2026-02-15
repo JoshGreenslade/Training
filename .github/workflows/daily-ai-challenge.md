@@ -9,6 +9,8 @@ tools:
 roles: all
 safe-outputs:
   create-discussion:
+    category: "announcements"
+    fallback-to-issue: true
   update-discussion:
 ---
 
@@ -68,7 +70,7 @@ If no "Daily AI Challenges" discussion exists, create one:
 
 ```
 create-discussion
-category: General
+category: announcements
 title: 📅 Daily AI Challenges - Training Hub
 body: |
   # 📅 Daily AI Challenges

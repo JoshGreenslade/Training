@@ -9,6 +9,8 @@ tools:
 roles: all
 safe-outputs:
   create-discussion:
+    category: "announcements"
+    fallback-to-issue: true
   update-discussion:
 ---
 
@@ -57,7 +59,7 @@ If no leaderboard discussion exists, create one:
 
 ```
 create-discussion
-category: General
+category: announcements
 title: 🏆 AI-First Training Leaderboard
 body: |
   # 🏆 AI-First Training Leaderboard

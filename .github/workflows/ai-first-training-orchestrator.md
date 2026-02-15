@@ -402,6 +402,9 @@ Be:
 3. **"I'm ready for the Level X Challenge"** or **"Ready for challenge"** (e.g., "I'm ready for the Level 1 Challenge"):
    - Parse current progress
    - If level is not specified in command, use the user's current level from metadata
+   - Validate the requested level:
+     - If requesting a future level (higher than current), reply that they need to complete current level first
+     - If requesting a past level (already completed), reply with congratulations and offer next level
    - Verify all modules for that level are complete
    - If ready:
      - Create the challenge PR (for coding/review challenges)

@@ -23,7 +23,7 @@
 #
 # Automated review and feedback for training challenge submissions
 #
-# frontmatter-hash: 96a218c08a492f6587764865f7bfc02c26289842b4212f0d9b65ad94295bc414
+# frontmatter-hash: ee159105de0cf90faf6ac80a681d077a4d5ca5927f9363a56304991a46cedfc8
 
 name: "🎯 Challenge Review Assistant"
 "on":
@@ -442,7 +442,7 @@ jobs:
                   "GITHUB_LOCKDOWN_MODE": "$GITHUB_MCP_LOCKDOWN",
                   "GITHUB_PERSONAL_ACCESS_TOKEN": "\${GITHUB_MCP_SERVER_TOKEN}",
                   "GITHUB_READ_ONLY": "1",
-                  "GITHUB_TOOLSETS": "context,repos,issues,pull_requests"
+                  "GITHUB_TOOLSETS": "context,repos,issues,pull_requests,discussions"
                 }
               },
               "safeoutputs": {
@@ -585,6 +585,7 @@ jobs:
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           GH_AW_PROMPT: /tmp/gh-aw/aw-prompts/prompt.txt
+          GH_AW_GITHUB_EVENT_DISCUSSION_NUMBER: ${{ github.event.discussion.number }}
         with:
           script: |
             const { setupGlobals } = require('/opt/gh-aw/actions/setup_globals.cjs');

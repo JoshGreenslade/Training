@@ -23,7 +23,7 @@
 #
 # Gamified training program to transform senior engineers into AI-first leaders who can guide their teams through the AI revolution
 #
-# frontmatter-hash: 8b4180be11783b57a3b5a6154fdef947021a9e81546b27040dd099bea46d2c97
+# frontmatter-hash: 4ae6254640c94e5eab5e4086b6ceaf02ee3dbe3a72d988a358e0f930f4d26474
 
 name: "🎓 AI-First Senior Engineer Training Orchestrator"
 "on":
@@ -604,7 +604,7 @@ jobs:
                   "GITHUB_LOCKDOWN_MODE": "$GITHUB_MCP_LOCKDOWN",
                   "GITHUB_PERSONAL_ACCESS_TOKEN": "\${GITHUB_MCP_SERVER_TOKEN}",
                   "GITHUB_READ_ONLY": "1",
-                  "GITHUB_TOOLSETS": "context,repos,issues,pull_requests"
+                  "GITHUB_TOOLSETS": "context,repos,issues,pull_requests,discussions"
                 }
               },
               "safeoutputs": {
@@ -748,6 +748,7 @@ jobs:
         env:
           GH_AW_PROMPT: /tmp/gh-aw/aw-prompts/prompt.txt
           GH_AW_GITHUB_EVENT_ISSUE_NUMBER: ${{ github.event.issue.number }}
+          GH_AW_GITHUB_EVENT_DISCUSSION_NUMBER: ${{ github.event.discussion.number }}
         with:
           script: |
             const { setupGlobals } = require('/opt/gh-aw/actions/setup_globals.cjs');

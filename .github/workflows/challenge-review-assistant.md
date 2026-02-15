@@ -8,6 +8,7 @@ on:
     types: [created]
 tools:
   web-fetch:
+  github:
 roles: all
 safe-outputs:
   add-comment:
@@ -77,25 +78,27 @@ When trainees complete challenges, you:
 
 ### Step 2: Find the User's Training Discussion
 
-**IMPORTANT**: This workflow does NOT have access to GitHub MCP tools like `github-pull_request_read` or `github-search_issues`. You must use alternative methods.
+**IMPORTANT**: This workflow now has GitHub MCP tools available for accessing discussion data.
 
 1. **For PRs**: 
    - Extract trainee username from PR author or branch name (format: `training/{username}/...`)
-   - Use `web-fetch` to access the GitHub REST API directly:
-     - URL: `https://api.github.com/search/issues?q=repo:JoshGreenslade/Training+label:user-training+in:title+Training+Progress+{username}`
+   - Use GitHub MCP tools or `web-fetch` to access the GitHub REST API:
+     - **Preferred**: Use GitHub MCP search tools like `github-search_issues` with query: `repo:JoshGreenslade/Training label:user-training in:title Training Progress {username}`
+     - **Alternative**: Use `web-fetch` with URL: `https://api.github.com/search/issues?q=repo:JoshGreenslade/Training+label:user-training+in:title+Training+Progress+{username}`
      - Replace `{username}` with the actual trainee username (without @ symbol)
      - This will return discussions with the user-training label matching the trainee
-   - Parse the JSON response to get the discussion number
-   - Use `web-fetch` again to get discussion details:
-     - URL: `https://api.github.com/repos/JoshGreenslade/Training/discussions/{discussion_number}`
+   - Parse the response to get the discussion number
+   - Use GitHub MCP tools (preferred) or `web-fetch` to get discussion details:
+     - **Preferred**: Use `github-issue_read` with the discussion number
+     - **Alternative**: URL: `https://api.github.com/repos/JoshGreenslade/Training/discussions/{discussion_number}`
      - Replace `{discussion_number}` with the actual discussion number from the search response
-   - **DO NOT** attempt to use `pull_request_read` or any other GitHub MCP tools - they are not available in this workflow
    
 2. **For Discussion comments**:
    - You're already in the training discussion (the event provides the discussion context)
    - The discussion number is available from the event context
-   - Use `web-fetch` to get the full discussion body if needed:
-     - URL: `https://api.github.com/repos/JoshGreenslade/Training/discussions/${{github.event.discussion.number}}`
+   - Use GitHub MCP tools (preferred) or `web-fetch` to get the full discussion body if needed:
+     - **Preferred**: Use `github-issue_read` with the discussion number
+     - **Alternative**: URL: `https://api.github.com/repos/JoshGreenslade/Training/discussions/${{github.event.discussion.number}}`
    - Parse the discussion body to get current progress
 
 ### Step 3: Parse Current Progress
@@ -353,16 +356,22 @@ If showing struggle:
 
 ### ⚠️ CRITICAL: Tool Availability
 
-This workflow has LIMITED tools available:
-- ✅ **web-fetch**: For accessing GitHub REST API directly
+This workflow has the following tools available:
+- ✅ **web-fetch**: For accessing GitHub REST API or external URLs directly
+- ✅ **github**: GitHub MCP tools for accessing discussions, issues, pull requests, and other GitHub resources
 - ✅ **add-comment**: Safe output for adding comments
 - ✅ **update-discussion**: Safe output for updating discussions
-- ❌ **NO GitHub MCP tools**: Do NOT attempt to use `github-pull_request_read`, `github-search_issues`, `github-issue_read`, or any other GitHub MCP server tools
-- ❌ **NO pull_request context**: When triggered by `discussion_comment`, there is NO pull request context available
+
+**Accessing GitHub Data**:
+- You can now use GitHub MCP tools to access discussions, issues, and PRs directly
+- Example tools: `github-list_issues`, `github-issue_read`, `github-pull_request_read`, `github-search_issues`, etc.
+- **Note**: When triggered by `discussion_comment`, there is NO pull request context available
+  - Use `github-issue_read` for discussions (they are treated as issues in the API)
+  - Do NOT attempt to use `github-pull_request_read` when handling discussion comments
 
 **Always check the trigger type FIRST**:
-- If `pull_request.closed`: You're reviewing a PR-based challenge
-- If `discussion_comment.created`: You're reviewing a discussion-based challenge (DO NOT try to access PR data)
+- If `pull_request.closed`: You're reviewing a PR-based challenge (can use PR tools)
+- If `discussion_comment.created`: You're reviewing a discussion-based challenge (use issue/discussion tools, NOT PR tools)
 
 ### On PR Closed with `training-challenge` label:
 

@@ -22,6 +22,8 @@ tools:
 roles: all
 safe-outputs:
   create-discussion:
+    category: announcements
+    fallback-to-issue: true
   update-discussion:
   create-pull-request:
   close-issue:
@@ -47,7 +49,7 @@ This workflow has been configured with the following safe-outputs for creating G
 **To create a discussion**, use:
 ```
 create-discussion
-category: General
+category: announcements
 title: [Discussion title]
 body: |
   [Discussion content]

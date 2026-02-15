@@ -55,7 +55,13 @@ Level 5: AI Champion ⭐
 3. Fill out the training form
 4. Submit to begin your journey!
 
-The AI Training Master will create your personalized training path within minutes.
+The AI Training Master will:
+- Create your personalized training discussion
+- Set up your progress tracking
+- Provide your first learning modules
+- Close the initial issue
+
+**Your training discussion is your home base** - all your progress, modules, and interactions happen there!
 
 ### Step 2: Complete Learning Modules
 
@@ -65,22 +71,37 @@ Each level has 3-4 learning modules covering:
 - Real-world examples
 - Best practices
 
+Reply to your training discussion to:
+- Request a module
+- Mark a module complete
+- Ask questions
+
 **Earn 50-150 XP per module**
 
 ### Step 3: Tackle Challenges
 
-Put your knowledge to the test with practical challenges:
-- Build agentic workflows
-- Review AI-generated code
-- Design multi-agent systems
-- Train team members
-- Create transformation strategies
+Challenges are delivered in three formats:
+
+**🔨 Coding Challenges** (PRs you implement)
+- AI opens a PR with starter code
+- You checkout the branch and implement the solution
+- Close the PR when complete to trigger review
+
+**🔍 Code Review Challenges** (PRs you review)
+- AI opens a PR with intentionally buggy code
+- You review and leave comments on issues found
+- Close the PR when done reviewing
+
+**💬 Discussion Challenges** (respond in your discussion)
+- Strategy, theory, and planning challenges
+- Submit your response directly in your training discussion
+- No PR needed
 
 **Earn 300-1000 XP per challenge**
 
 ### Step 4: Engage Daily
 
-Participate in daily micro-challenges:
+Participate in daily micro-challenges posted in the **📅 Daily AI Challenges** discussion:
 - 🐛 **Bug Hunt Monday**: Find bugs in AI code
 - ✍️ **Prompt Perfection Tuesday**: Improve prompts
 - 🏗️ **Workflow Wednesday**: Design workflows
@@ -88,17 +109,24 @@ Participate in daily micro-challenges:
 - 🎨 **Creative Friday**: Innovative solutions
 - 🎓 **Weekend Knowledge Checks**: Quick quizzes
 
+Reply to the Daily Challenges discussion with your solutions!
+
 **Earn 50-100 XP per daily challenge**
 
 ## 📊 Track Your Progress
 
-Use these commands in any training issue:
+Your training discussion shows:
+- Current level and XP
+- Badges earned
+- Completed modules
+- Challenge status
+- Next steps
 
-- `/progress` - View your detailed stats
-- `/my-stats` - Personal progress report
-- `/help` - Get assistance
-- `/complete-module <id>` - Mark module complete
-- `/submit-challenge` - Submit your challenge work
+Reply to your discussion to:
+- Ask "What's my progress?"
+- Request help
+- Mark modules complete
+- Submit discussion-based challenges
 
 ## 🏆 Leaderboard & Competition
 
@@ -163,14 +191,16 @@ Earn special badges:
 
 - **Agentic Workflows Documentation**: [GitHub Agentic Workflows](https://github.github.com/gh-aw/)
 - **Example Workflows**: `.github/workflows/` directory
-- **Discussion Forum**: Share questions and help others
-- **Training Materials**: Generated as you progress
+- **Your Training Discussion**: Your personalized progress and learning hub
+- **Daily Challenges Discussion**: Community daily challenges
+- **Leaderboard Discussion**: Weekly rankings and achievements
+- **Module Discussions**: Shared learning content referenced in your training
 
 ## 🤝 Getting Help
 
-- Comment `/help` on your training issue
-- Ask questions in Discussions (General category)
-- Tag @AI-Training-Master in any training-related issue
+- Reply to your training discussion with questions
+- Ask in the Daily Challenges discussion
+- Check the Discussions forum (General category)
 - Help others and earn bonus XP!
 
 ## 🎯 Time Commitment
@@ -193,9 +223,20 @@ Transform into an AI-first leader and prepare for the future of software enginee
 
 This training program is powered by:
 - **GitHub Agentic Workflows** - AI-driven automation
-- **GitHub Issues** - Progress tracking
-- **GitHub Discussions** - Community learning
+- **GitHub Discussions** - Progress tracking and community learning
+- **GitHub Pull Requests** - Hands-on coding and review challenges
 - **GitHub Actions** - Workflow execution
+
+### How It Works
+
+1. **Start training** via issue template → Creates your training discussion
+2. **Learning modules** shared as discussions → Referenced in your progress
+3. **Coding challenges** delivered as PRs → You implement the solution
+4. **Code review challenges** delivered as PRs → You review AI's code
+5. **Discussion challenges** posted in your training discussion → You respond directly
+6. **Progress tracked** in your discussion → XP, badges, and next steps updated automatically
+7. **Daily challenges** in dedicated discussion → Community participation
+8. **Leaderboard** updated weekly → Celebrate achievements
 
 The workflows are entirely open source and available in `.github/workflows/` - feel free to explore how they work!
 

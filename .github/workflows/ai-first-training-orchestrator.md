@@ -21,6 +21,8 @@ on:
 tools:
   web-fetch:
   web-search:
+  github:
+    toolsets: [context, repos, issues, pull_requests, discussions]
 roles: all
 safe-outputs:
   create-discussion:
@@ -45,6 +47,24 @@ The senior engineer you're training is not being replaced by AI - they're being 
 - **Team leadership**: Teaching juniors how to work with AI effectively
 - **AI championing**: Rolling out AI tools across the organization
 - **Stakeholder liaison**: Translating business needs into AI-assisted solutions
+
+## ⚠️ CRITICAL: Tool Availability
+
+This workflow has the following tools available:
+- ✅ **web-fetch**: For accessing GitHub REST API or external URLs directly
+- ✅ **web-search**: For searching the web for information
+- ✅ **github**: GitHub MCP tools for accessing discussions, issues, pull requests, and other GitHub resources
+- ✅ **Safe outputs**: `create-discussion`, `update-discussion`, `create-pull-request`, `close-issue`, `add-comment`
+
+**Accessing GitHub Data**:
+- You can now use GitHub MCP tools to access discussions, issues, and PRs directly
+- Example tools: `github-list_issues`, `github-issue_read`, `github-pull_request_read`, `github-search_issues`, etc.
+- For discussions: Use GitHub MCP tools or `web-fetch` with GitHub REST API URLs
+  - GitHub REST API: `https://api.github.com/repos/JoshGreenslade/Training/discussions/{number}`
+  - Replace `{number}` with the actual discussion number (e.g., 42)
+- For searching: Use GitHub MCP search tools or REST API
+  - GitHub REST API: `https://api.github.com/search/issues?q=repo:JoshGreenslade/Training+label:user-training+in:title+{search_term}`
+  - Replace `{search_term}` with the actual search text (e.g., replace `{search_term}` with `Module+1.1` - use + for spaces)
 
 ## 🔧 Using Safe Outputs
 
@@ -214,7 +234,9 @@ I'll respond here and update your progress in this post. This discussion is your
 
 ### 2. **Creating Module Content** (workflow_dispatch or on-demand)
 
-When creating module content, create a NEW discussion in the **General** category that can be referenced by all trainees:
+When creating module content, create a NEW discussion in the **General** category that can be referenced by all trainees.
+
+**IMPORTANT**: When creating a new module discussion, generate ALL content in the initial discussion body. DO NOT create an empty discussion and then add content via separate comments. The complete module content should be included when you call `create-discussion`.
 
 **Module Format**:
 ```markdown
@@ -383,11 +405,29 @@ Be:
 - Comment is on a training discussion (title starts with "🎓 Training Progress:")
 - Comment contains a user command (not a challenge submission)
 
+**How to verify these conditions**:
+- The discussion number is available from the event context: `${{github.event.discussion.number}}`
+- Use GitHub MCP tools or `web-fetch` to get discussion details:
+  - **Preferred**: Use GitHub MCP tools like `github-issue_read` (discussions are treated as issues in the API)
+  - **Alternative**: Use `web-fetch` with URL: `https://api.github.com/repos/JoshGreenslade/Training/discussions/${{github.event.discussion.number}}`
+  - Parse response to check:
+    - Labels array contains "user-training"
+    - Title starts with "🎓 Training Progress:"
+- If discussion doesn't meet criteria, exit without taking action
+
 **User Commands to Handle**:
 
 1. **"I'd like to start Module X.Y"** or **"Start Module X.Y"** (e.g., "I'd like to start Module 1.1"):
    - Parse current progress from discussion metadata
-   - Create or link to the module discussion if it doesn't exist
+   - Check if the module discussion exists:
+     - **Preferred**: Use GitHub MCP search tools like `github-search_issues`
+     - **Alternative**: Use `web-fetch` with GitHub API to search: `https://api.github.com/search/issues?q=repo:JoshGreenslade/Training+in:title+Module+{X.Y}`
+     - Replace `{X.Y}` with the actual module number (e.g., `1.1`) - the full query becomes: `...in:title+Module+1.1`
+     - Parse response to see if a discussion with that module title exists
+   - If the module discussion does NOT exist yet:
+     - Create it NOW using `create-discussion` with ALL module content in the body (do not create empty and add via comments)
+     - Include all sections: Learning Objectives, Content, Key Concepts, Examples, Best Practices, Quiz, and Completion instructions
+   - If it already exists, get its URL from the search results
    - Reply to their comment with link to module and encouragement
    - Update their discussion to mark module as "in progress"
 
@@ -429,18 +469,21 @@ Be:
      - Badges earned
 
 **Implementation Steps**:
-1. Check if discussion has `user-training` label (if not, exit - not for this workflow)
-2. Parse the comment to identify which command
-3. Read the discussion body to get current metadata
-4. Execute the appropriate action
-5. Update discussion body with new metadata (if needed)
-6. Reply to the user's comment with response
+1. Get the discussion number from event context
+2. Use GitHub MCP tools (preferred) or `web-fetch` to get discussion details from GitHub REST API
+3. Check if discussion has `user-training` label and correct title format (if not, exit - not for this workflow)
+4. Parse the comment to identify which command
+5. Read the discussion body to get current metadata (available in the response from step 2)
+6. Execute the appropriate action
+7. Update discussion body with new metadata (if needed) using `update-discussion`
+8. Reply to the user's comment with response using `add-comment`
 
 ### On workflow_dispatch with action "create_module_content":
 
 1. Check which modules don't have discussions yet
-2. Create discussion for requested module
-3. Return discussion link
+2. Create discussion for requested module using `create-discussion` with the COMPLETE module content in the body
+3. **IMPORTANT**: Generate all module content (Learning Objectives, Content sections, Key Concepts, Examples, Best Practices, Quiz, Completion instructions) in the initial discussion body - do NOT create an empty discussion and add content via separate comments
+4. Return discussion link
 
 ## 🚨 Important Implementation Notes
 

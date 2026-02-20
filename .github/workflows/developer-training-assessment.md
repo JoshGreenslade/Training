@@ -24,7 +24,8 @@ tools:
   repo-memory:
 safe-outputs:
   create-discussion:
-    category: General
+    category: Announcements
+    fallback-to-issue: true
     labels: [developer-training]
   add-comment:
     max: 2

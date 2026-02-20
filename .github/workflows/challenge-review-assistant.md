@@ -2,6 +2,7 @@
 name: 🎯 Challenge Review Assistant
 description: Automated review and feedback for training challenge submissions
 on:
+  roles: all
   pull_request:
     types: [closed]
   discussion_comment:
@@ -10,7 +11,6 @@ tools:
   web-fetch:
   github:
     toolsets: [context, repos, issues, pull_requests, discussions]
-roles: all
 safe-outputs:
   add-comment:
   update-discussion:

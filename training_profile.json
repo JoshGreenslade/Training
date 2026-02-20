@@ -1,0 +1,27 @@
+{
+  "trainee": "JoshGreenslade",
+  "training_discussion_number": null,
+  "assessments_completed": 0,
+  "last_assessment_topic": "algorithms_data_structures",
+  "last_assessment_number": 1,
+  "last_assessment_question": "Big-O notation and time complexity — ContainsDuplicate C# function: state complexity, rewrite with better complexity, explain trade-off",
+  "skills": {
+    "algorithms_data_structures": { "score": null, "last_assessed": null, "assessments": 0 },
+    "system_architecture": { "score": null, "last_assessed": null, "assessments": 0 },
+    "ddd": { "score": null, "last_assessed": null, "assessments": 0 },
+    "coding_csharp_dotnet": { "score": null, "last_assessed": null, "assessments": 0 },
+    "coding_typescript_angular": { "score": null, "last_assessed": null, "assessments": 0 },
+    "coding_other_languages": { "score": null, "last_assessed": null, "assessments": 0 },
+    "performance_optimisation": { "score": null, "last_assessed": null, "assessments": 0 },
+    "testing": { "score": null, "last_assessed": null, "assessments": 0 },
+    "debugging": { "score": null, "last_assessed": null, "assessments": 0 },
+    "refactoring": { "score": null, "last_assessed": null, "assessments": 0 },
+    "security": { "score": null, "last_assessed": null, "assessments": 0 },
+    "devops_cicd": { "score": null, "last_assessed": null, "assessments": 0 },
+    "stakeholder_management": { "score": null, "last_assessed": null, "assessments": 0 },
+    "pull_request_reviews": { "score": null, "last_assessed": null, "assessments": 0 },
+    "prioritisation": { "score": null, "last_assessed": null, "assessments": 0 },
+    "emotional_intelligence": { "score": null, "last_assessed": null, "assessments": 0 },
+    "logic_systems_thinking": { "score": null, "last_assessed": null, "assessments": 0 }
+  }
+}

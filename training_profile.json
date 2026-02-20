@@ -1,11 +1,11 @@
 {
   "trainee": "JoshGreenslade",
-  "training_discussion_number": null,
+  "training_discussion_number": 38,
   "assessments_completed": 0,
   "last_assessment_topic": "algorithms_data_structures",
   "last_assessment_number": 1,
   "last_assessment_question": "Big-O notation and time complexity — ContainsDuplicate C# function: state complexity, rewrite with better complexity, explain trade-off",
-  "pending_first_post": true,
+  "pending_first_post": false,
   "skills": {
     "algorithms_data_structures": { "score": null, "last_assessed": null, "assessments": 0 },
     "system_architecture": { "score": null, "last_assessed": null, "assessments": 0 },

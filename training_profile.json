@@ -1,13 +1,13 @@
 {
   "trainee": "JoshGreenslade",
   "training_discussion_number": 38,
-  "assessments_completed": 0,
-  "last_assessment_topic": "algorithms_data_structures",
-  "last_assessment_number": 1,
-  "last_assessment_question": "Big-O notation and time complexity — ContainsDuplicate C# function: state complexity, rewrite with better complexity, explain trade-off",
+  "assessments_completed": 1,
+  "last_assessment_topic": "coding_csharp_dotnet",
+  "last_assessment_number": 2,
+  "last_assessment_question": "Value types vs reference types in C# — explain output of 3 lines, explain difference, two scenarios where struct causes problems",
   "pending_first_post": false,
   "skills": {
-    "algorithms_data_structures": { "score": null, "last_assessed": null, "assessments": 0 },
+    "algorithms_data_structures": { "score": 38, "last_assessed": "2026-02-20", "assessments": 1 },
     "system_architecture": { "score": null, "last_assessed": null, "assessments": 0 },
     "ddd": { "score": null, "last_assessed": null, "assessments": 0 },
     "coding_csharp_dotnet": { "score": null, "last_assessed": null, "assessments": 0 },

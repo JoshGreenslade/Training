@@ -2,11 +2,11 @@
 name: 🏆 Training Leaderboard & Progress Tracker
 description: Weekly update of trainee progress, achievements, and leaderboard
 on:
+  roles: all
   schedule: weekly
   workflow_dispatch:
 tools:
   web-fetch:
-roles: all
 safe-outputs:
   create-discussion:
     category: announcements

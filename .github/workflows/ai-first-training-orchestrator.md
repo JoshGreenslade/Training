@@ -2,6 +2,7 @@
 name: 🎓 AI-First Senior Engineer Training Orchestrator
 description: Gamified training program to transform senior engineers into AI-first leaders who can guide their teams through the AI revolution
 on:
+  roles: all
   issues:
     types: [opened]
   discussion_comment:
@@ -23,7 +24,6 @@ tools:
   web-search:
   github:
     toolsets: [context, repos, issues, pull_requests, discussions]
-roles: all
 safe-outputs:
   create-discussion:
     category: announcements

@@ -2,11 +2,11 @@
 name: 📅 Daily AI Challenge Generator
 description: Posts daily mini-challenges to keep training engaging and build consistency
 on:
+  roles: all
   schedule: daily
   workflow_dispatch:
 tools:
   web-fetch:
-roles: all
 safe-outputs:
   create-discussion:
     category: announcements

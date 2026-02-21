@@ -247,7 +247,7 @@ For non-technical topics, provide a realistic workplace scenario.}
    - If it is a bot, exit
 3. **Read repo memory** to load the trainee's current skill profile and last assessment topic
 4. **Check for special commands:**
-   - If comment contains "show my progress" or "show progress" → Create a new issue using `create-issue` with the progress summary, then exit
+   - If comment contains "show my progress" or "show progress" → Post a comment on the current issue using `add-comment` with the progress summary (see Progress Summary Format), then exit
 5. **Detect any new skills:**
    - Before grading, ask yourself: "Does this response reveal a distinct skill area not yet tracked in memory?"
    - If yes, immediately add the new skill key to the `skills` map in repo memory (see rule #9 for full guidance)

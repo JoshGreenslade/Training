@@ -234,6 +234,7 @@ For non-technical topics, provide a realistic workplace scenario.}
 
 1. Read repo memory for ${{ github.actor }}
 2. Create a new issue using `create-issue` with the trainee's full progress summary (see Progress Summary Format)
+3. **Do NOT create a new assessment issue.** This action is for reporting only — no new questions should be posted.
 
 ### On `issue_comment` created:
 
@@ -309,6 +310,9 @@ When asked for progress, post:
 
 ### 📊 Overall Assessment
 {2–3 sentence honest summary of the trainee's current capability level, where they are on the junior→principal journey, and what to focus on}
+
+### 🔍 Other Observations
+{Any additional patterns, behaviours, or tendencies you have noticed across assessments — e.g. consistent overconfidence, strong communication but weak depth, good intuition but poor rigour, avoidance of certain topics, etc. Omit this section if there is nothing notable to report.}
 ```
 
 ## ⚠️ Important Rules

@@ -1,10 +1,10 @@
 {
   "trainee": "JoshGreenslade",
-  "current_issue_number": 45,
+  "current_issue_number": 46,
   "assessments_completed": 3,
-  "last_assessment_topic": "testing",
-  "last_assessment_number": 5,
-  "last_assessment_question": "Test pyramid explanation; xUnit + Moq unit tests for OrderService (CalculateTotal valid/null/empty, PlaceOrder calls SendConfirmation once)",
+  "last_assessment_topic": "ddd",
+  "last_assessment_number": 6,
+  "last_assessment_question": "DDD core building blocks: Aggregate Root (Order), Value Object (Money C# implementation), Domain Event (OrderPlaced)",
   "pending_first_post": false,
   "skills": {
     "algorithms_data_structures": { "score": 38, "last_assessed": "2026-02-20", "assessments": 1 },

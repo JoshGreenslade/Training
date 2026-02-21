@@ -1,10 +1,10 @@
 {
   "trainee": "JoshGreenslade",
-  "training_discussion_number": 38,
+  "current_issue_number": 36,
   "assessments_completed": 1,
-  "last_assessment_topic": "coding_csharp_dotnet",
-  "last_assessment_number": 2,
-  "last_assessment_question": "Value types vs reference types in C# — explain output of 3 lines, explain difference, two scenarios where struct causes problems",
+  "last_assessment_topic": "system_architecture",
+  "last_assessment_number": 3,
+  "last_assessment_question": "Monolith vs microservices: explain difference, 3 advantages each, critique 'microservices always better', recommend for 4-person startup",
   "pending_first_post": false,
   "skills": {
     "algorithms_data_structures": { "score": 38, "last_assessed": "2026-02-20", "assessments": 1 },
